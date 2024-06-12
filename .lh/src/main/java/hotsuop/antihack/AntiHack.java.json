@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 9,
             "patches": [
                 {
                     "date": 1718146155958,
@@ -28,6 +28,22 @@
                 {
                     "date": 1718147049987,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n \n     private void checkPlayerSpeed(ServerPlayerEntity player) {\n         Vec3d velocity = player.getVelocity();\n         double speed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);\n-        double maxAllowedSpeed = 0.23085341576773576; // Adjust this value as necessary\n+        double maxAllowedSpeed = 0.23085341576773576; \n \n \t\tif (speed > maxAllowedSpeed) {\n \t\t\tSystem.out.println(\"Player  has a speed of \" + speed + \" which is higher than the allowed speed of \" + maxAllowedSpeed);\n \t\t\tplayer.teleport(player.getWorld(), player.getX(), player.getY(), player.getZ(), player.getYaw(), player.getPitch());\n"
+                },
+                {
+                    "date": 1718156326037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,27 +1,26 @@\n-package hotsuop.antihack;\r\n-\r\n-import net.fabricmc.api.ModInitializer;\r\n-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;\r\n-import net.minecraft.server.network.ServerPlayerEntity;\r\n-import net.minecraft.util.math.Vec3d;\r\n-\r\n-public class AntiHack implements ModInitializer {\r\n-\r\n-    @Override\r\n-    public void onInitialize() {\r\n-        ServerTickEvents.END_SERVER_TICK.register(server -> {\r\n-            server.getPlayerManager().getPlayerList().forEach(this::checkPlayerSpeed);\r\n-        });\r\n-    }\r\n-\r\n-    private void checkPlayerSpeed(ServerPlayerEntity player) {\r\n-        Vec3d velocity = player.getVelocity();\r\n-        double speed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);\r\n-        double maxAllowedSpeed = 0.23085341576773576; \r\n-\r\n-\t\tif (speed > maxAllowedSpeed) {\r\n-\t\t\tSystem.out.println(\"Player  has a speed of \" + speed + \" which is higher than the allowed speed of \" + maxAllowedSpeed);\r\n-\t\t\tplayer.teleport(player.getWorld(), player.getX(), player.getY(), player.getZ(), player.getYaw(), player.getPitch());\r\n-\t\t}\r\n-    }\r\n-}\r\n+package hotsuop.antihack;\n+\n+import net.fabricmc.api.ModInitializer;\n+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;\n+import net.minecraft.server.network.ServerPlayerEntity;\n+import net.minecraft.util.math.Vec3d;\n+\n+public class AntiHack implements ModInitializer {\n+\n+    @Override\n+    public void onInitialize() {\n+        ServerTickEvents.END_SERVER_TICK.register(server -> {\n+            server.getPlayerManager().getPlayerList().forEach(this::checkPlayerSpeed);\n+        });\n+    }\n+\n+    private void checkPlayerSpeed(ServerPlayerEntity player) {\n+        Vec3d velocity = player.getVelocity();\n+        double speed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);\n+        double maxAllowedSpeed = 0.3; // Adjust this value as necessary\n+\n+        if (speed > maxAllowedSpeed) {\n+            player.teleport(player.getWorld(), player.getX(), player.getY(), player.getZ(), player.getYaw(), player.getPitch());\n+        }\n+    }\n+}\n"
+                },
+                {
+                    "date": 1718156333897,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,26 @@\n+package hotsuop.antihack;\n+\n+import net.fabricmc.api.ModInitializer;\n+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;\n+import net.minecraft.server.network.ServerPlayerEntity;\n+import net.minecraft.util.math.Vec3d;\n+\n+public class AntiHack implements ModInitializer {\n+\n+    @Override\n+    public void onInitialize() {\n+        ServerTickEvents.END_SERVER_TICK.register(server -> {\n+            server.getPlayerManager().getPlayerList().forEach(this::checkPlayerSpeed);\n+        });\n+    }\n+\n+    private void checkPlayerSpeed(ServerPlayerEntity player) {\n+        Vec3d velocity = player.getVelocity();\n+        double speed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);\n+        double maxAllowedSpeed = 0.3; // Adjust this value as necessary\n+\n+        if (speed > maxAllowedSpeed) {\n+            player.teleport(player.getWorld(), player.getX(), player.getY(), player.getZ(), player.getYaw(), player.getPitch());\n+        }\n+    }\n+}\n"
+                },
+                {
+                    "date": 1718156417489,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n         double speed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);\r\n         double maxAllowedSpeed = 0.23085341576773576; \r\n \r\n \t\tif (speed > maxAllowedSpeed) {\r\n-\t\t\tSystem.out.println(\"Player  has a speed of \" + speed + \" which is higher than the allowed speed of \" + maxAllowedSpeed);\r\n+\t\t\t\r\n \t\t\tplayer.teleport(player.getWorld(), player.getX(), player.getY(), player.getZ(), player.getYaw(), player.getPitch());\r\n \t\t}\r\n     }\r\n }\r\n"
+                },
+                {
+                    "date": 1718156773043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n \r\n     private void checkPlayerSpeed(ServerPlayerEntity player) {\r\n         Vec3d velocity = player.getVelocity();\r\n         double speed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);\r\n-        double maxAllowedSpeed = 0.23085341576773576; \r\n+        double maxAllowedSpeed = 0.1; \r\n \r\n \t\tif (speed > maxAllowedSpeed) {\r\n \t\t\t\r\n \t\t\tplayer.teleport(player.getWorld(), player.getX(), player.getY(), player.getZ(), player.getYaw(), player.getPitch());\r\n"
                 }
             ],
             "date": 1718146155958,

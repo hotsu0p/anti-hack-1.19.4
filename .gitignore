@@ -3,6 +3,7 @@
 .gradle/
 build/
 out/
+.lh/
 classes/
 
 # eclipse
@@ -33,8 +34,8 @@ bin/
 run/
 
 # java
-
 hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
+*.lh

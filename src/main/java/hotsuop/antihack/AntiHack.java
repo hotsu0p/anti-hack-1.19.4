@@ -17,11 +17,11 @@ public class AntiHack implements ModInitializer {
     private void checkPlayerSpeed(ServerPlayerEntity player) {
         Vec3d velocity = player.getVelocity();
         double speed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);
-        double maxAllowedSpeed = 0.23085341576773576; 
+        double maxAllowedSpeed = 0.1838147611607687; 
 
 		if (speed > maxAllowedSpeed) {
-			System.out.println("Player  has a speed of " + speed + " which is higher than the allowed speed of " + maxAllowedSpeed);
-			player.teleport(player.getWorld(), player.getX(), player.getY(), player.getZ(), player.getYaw(), player.getPitch());
+			System.out.println("speed is " + speed);
+			player.teleport(player.getWorld(), player.getX() - 2, player.getY(), player.getZ(), player.getYaw(), player.getPitch());
 		}
     }
 }
