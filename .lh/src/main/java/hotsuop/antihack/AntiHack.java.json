@@ -1,0 +1,38 @@
+{
+    "sourceFile": "src/main/java/hotsuop/antihack/AntiHack.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1718146155958,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1718146376937,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,10 +18,10 @@\n         Vec3d velocity = player.getVelocity();\n         double speed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);\n         double maxAllowedSpeed = 0.3; // Adjust this value as necessary\n \n-        if (speed > maxAllowedSpeed) {\n-            player.sendMessage(new LiteralText(\"Speed hack detected!\"), false);\n-            player.teleport(player.getWorld(), player.getX(), player.getY(), player.getZ(), player.getYaw(), player.getPitch());\n-        }\n+\t\tif (speed > maxAllowedSpeed) {\n+\n+\t\t\tplayer.teleport(player.getWorld(), player.getX(), player.getY(), player.getZ(), player.getYaw(), player.getPitch());\n+\t\t}\n     }\n }\n"
+                },
+                {
+                    "date": 1718146736557,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,12 +16,12 @@\n \n     private void checkPlayerSpeed(ServerPlayerEntity player) {\n         Vec3d velocity = player.getVelocity();\n         double speed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);\n-        double maxAllowedSpeed = 0.3; // Adjust this value as necessary\n+        double maxAllowedSpeed = 0.1; // Adjust this value as necessary\n \n \t\tif (speed > maxAllowedSpeed) {\n-\n+\t\t\tSystem.out.println(\"Player  has a speed of \" + speed + \" which is higher than the allowed speed of \" + maxAllowedSpeed);\n \t\t\tplayer.teleport(player.getWorld(), player.getX(), player.getY(), player.getZ(), player.getYaw(), player.getPitch());\n \t\t}\n     }\n }\n"
+                },
+                {
+                    "date": 1718146846877,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n \n     private void checkPlayerSpeed(ServerPlayerEntity player) {\n         Vec3d velocity = player.getVelocity();\n         double speed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);\n-        double maxAllowedSpeed = 0.1; // Adjust this value as necessary\n+        double maxAllowedSpeed = 0.22085341576773576; // Adjust this value as necessary\n \n \t\tif (speed > maxAllowedSpeed) {\n \t\t\tSystem.out.println(\"Player  has a speed of \" + speed + \" which is higher than the allowed speed of \" + maxAllowedSpeed);\n \t\t\tplayer.teleport(player.getWorld(), player.getX(), player.getY(), player.getZ(), player.getYaw(), player.getPitch());\n"
+                },
+                {
+                    "date": 1718146932169,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n \n     private void checkPlayerSpeed(ServerPlayerEntity player) {\n         Vec3d velocity = player.getVelocity();\n         double speed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);\n-        double maxAllowedSpeed = 0.22085341576773576; // Adjust this value as necessary\n+        double maxAllowedSpeed = 0.23085341576773576; // Adjust this value as necessary\n \n \t\tif (speed > maxAllowedSpeed) {\n \t\t\tSystem.out.println(\"Player  has a speed of \" + speed + \" which is higher than the allowed speed of \" + maxAllowedSpeed);\n \t\t\tplayer.teleport(player.getWorld(), player.getX(), player.getY(), player.getZ(), player.getYaw(), player.getPitch());\n"
+                },
+                {
+                    "date": 1718147049987,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n \n     private void checkPlayerSpeed(ServerPlayerEntity player) {\n         Vec3d velocity = player.getVelocity();\n         double speed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);\n-        double maxAllowedSpeed = 0.23085341576773576; // Adjust this value as necessary\n+        double maxAllowedSpeed = 0.23085341576773576; \n \n \t\tif (speed > maxAllowedSpeed) {\n \t\t\tSystem.out.println(\"Player  has a speed of \" + speed + \" which is higher than the allowed speed of \" + maxAllowedSpeed);\n \t\t\tplayer.teleport(player.getWorld(), player.getX(), player.getY(), player.getZ(), player.getYaw(), player.getPitch());\n"
+                }
+            ],
+            "date": 1718146155958,
+            "name": "Commit-0",
+            "content": "package hotsuop.antihack;\n\nimport net.fabricmc.api.ModInitializer;\nimport net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;\nimport net.minecraft.server.network.ServerPlayerEntity;\nimport net.minecraft.util.math.Vec3d;\n\npublic class AntiHack implements ModInitializer {\n\n    @Override\n    public void onInitialize() {\n        ServerTickEvents.END_SERVER_TICK.register(server -> {\n            server.getPlayerManager().getPlayerList().forEach(this::checkPlayerSpeed);\n        });\n    }\n\n    private void checkPlayerSpeed(ServerPlayerEntity player) {\n        Vec3d velocity = player.getVelocity();\n        double speed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);\n        double maxAllowedSpeed = 0.3; // Adjust this value as necessary\n\n        if (speed > maxAllowedSpeed) {\n            player.sendMessage(new LiteralText(\"Speed hack detected!\"), false);\n            player.teleport(player.getWorld(), player.getX(), player.getY(), player.getZ(), player.getYaw(), player.getPitch());\n        }\n    }\n}\n"
+        }
+    ]
+}
