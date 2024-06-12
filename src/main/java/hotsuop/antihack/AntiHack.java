@@ -13,7 +13,7 @@ import net.minecraft.util.math.Vec3d;
 public class AntiHack implements ModInitializer {
 	private final Map<UUID, Vec3d> playerPositions = new HashMap<>();
     private final Map<UUID, Long> playerViolationTimes = new HashMap<>();
-    private static final long VIOLATION_RESET_TIME = 5000; // 5 seconds
+    private static final long VIOLATION_RESET_TIME = 5000; // 5 sec
     private static final double MAX_ALLOWED_VERTICAL_VELOCITY = 0.4;
     @Override
     public void onInitialize() {
@@ -29,10 +29,8 @@ public class AntiHack implements ModInitializer {
                     if (player.getAbilities().flying) {
                         player.getAbilities().flying = false;
                         player.sendAbilitiesUpdate();
-                        player.sendMessage(Text.of("Flying is not allowed!"), false);
                     }
 
-                    // Check for abnormal vertical velocity
                     if (playerPositions.containsKey(playerId)) {
                         Vec3d previousPosition = playerPositions.get(playerId);
                         double verticalVelocity = currentPosition.y - previousPosition.y;
@@ -42,8 +40,6 @@ public class AntiHack implements ModInitializer {
                             long lastViolationTime = playerViolationTimes.getOrDefault(playerId, 0L);
 
                             if (currentTime - lastViolationTime < VIOLATION_RESET_TIME) {
-                                player.sendMessage(Text.of("Detected abnormal movement!"), false);
-                                // Apply appropriate penalty, e.g., teleporting the player to the last safe position
                                 player.teleport(previousPosition.x, previousPosition.y, previousPosition.z);
                             }
 
