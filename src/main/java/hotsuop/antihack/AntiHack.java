@@ -59,7 +59,7 @@ public class AntiHack implements ModInitializer {
 
 		if (speed > maxAllowedSpeed) {
 			System.out.println("speed is " + speed);
-			player.teleport(player.getWorld(), player.getX() - 1, player.getY(), player.getZ(), player.getYaw(), player.getPitch());
+			player.teleport(player.getWorld(), player.getX() - 1, player.getY() , player.getZ() - 1 , player.getYaw(), player.getPitch());
 		}
     }
 }
